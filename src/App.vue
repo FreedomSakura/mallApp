@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <keep-alive exclude="Detail">
+      <router-view></router-view>
+    </keep-alive>
+    <MainTabbar></MainTabbar>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// 组件
+import MainTabbar from 'components/content/MainTabbar'
+import NavBar from 'components/common/navbar/NavBar.vue'
+
+// 网络处理
+import {getHomeMultiData} from 'network/home.js'
+
+// Vuex
+import store from '@/store'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    MainTabbar,
+    NavBar
+  },
+  data() {
+    return {
+      banners: null,
+      recommends: null,
+    }
+  },
+  store
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import "~assets/css/base.css";
 </style>
